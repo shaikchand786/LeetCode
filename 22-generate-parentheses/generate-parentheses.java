@@ -1,0 +1,27 @@
+class Solution {
+    public List<String> generateParenthesis(int n)
+    {
+        List<String> result = new ArrayList<>();
+        generate("", 0, 0, n, result);
+        return result;
+    }
+
+    private void generate(String str, int open, int close, int n, List<String> result)
+    {
+        if (str.length() == n * 2)
+        {
+            result.add(str);
+            return;
+        }
+
+        if (open < n)
+        {
+            generate(str + "(", open + 1, close, n, result);
+        }
+
+        if (close < open)
+        {
+            generate(str + ")", open, close + 1, n, result);
+        }
+    }
+}
